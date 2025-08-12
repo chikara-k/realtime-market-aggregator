@@ -11,7 +11,7 @@ import (
 
 type Config struct {
 	Env string
-	DB  DBConfig
+	DB  *DBConfig
 }
 
 func LoadConfig() Config {
@@ -23,7 +23,7 @@ func LoadConfig() Config {
 	conf := Config{}
 
 	// DB setting
-	conf.DB = DBConfig{}
+	conf.DB = &DBConfig{}
 	conf.DB.Type = os.Getenv("DB_TYPE")
 	conf.DB.Host = os.Getenv("DB_HOST")
 	conf.DB.Name = os.Getenv("DB_NAME")

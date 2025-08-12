@@ -1,12 +1,13 @@
 package initializer
 
 import (
+	"time"
+
 	"github.com/chikara-k/realtime-market-aggregator/config"
 	"github.com/chikara-k/realtime-market-aggregator/infra/db/inframysql"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"time"
 )
 
 func initDBConnection(conf config.Config) (*inframysql.RealtimeMarketAggregatorDBConnection, error) {
