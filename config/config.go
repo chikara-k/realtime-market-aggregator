@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strconv"
 
 	"github.com/joho/godotenv"
@@ -15,9 +16,12 @@ type Config struct {
 }
 
 func LoadConfig() Config {
-	envPath := filepath.Join("/", ".env.local")
+	_, filename, _, _ := runtime.Caller(0)
+	dir := filepath.Join(filepath.Dir(filename), "..")
+	envPath := filepath.Join(dir, ".env.local")
+
 	if err := godotenv.Load(envPath); err != nil {
-		log.Printf("WARN: Error loading .env file: %v", err)
+	    log.Printf("WARN: Error loading .env file: %v", err)
 	}
 
 	conf := Config{}
